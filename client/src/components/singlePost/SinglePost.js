@@ -1,8 +1,26 @@
 import './singlepost.css'
 import img from '../../assets/FB_IMG_1671999614097.jpg'
 import { Delete, Edit } from '@mui/icons-material'
+import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import axios from 'axios'
 
-const SinglePost = () => {
+
+const SinglePost = ({post}) => {
+
+  const url = 'http://localhost:4003/blog/post'
+
+  const location = useLocation()
+  const path = location.pathname.split('/')[2]
+
+  useEffect(()=> {
+    const getPost = async () => {
+      const res = await axios.get(`${url}/${path}`)
+      console.log(res)
+    }
+    getPost()
+  }, [path])
+
   return (
     <div className='singlePost'>
       <div className='singlePostWrapper'>

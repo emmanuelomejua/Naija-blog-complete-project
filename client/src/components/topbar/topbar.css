@@ -58,3 +58,12 @@
     cursor: pointer;
     margin-left: 15px;
 }
+
+@media screen and (max-width: 480px){
+    .topLeft{
+        display: none;
+    }
+    .topRight{
+        display: none;
+    }
+}

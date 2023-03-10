@@ -6,7 +6,7 @@ const Posts = ({posts}) => {
     <div className='posts'>
       {
         posts.map((p, i)=>(
-          <Post posts={p} key={i}/>
+          <Post post={p} key={i}/>
         ))
       }
     </div>

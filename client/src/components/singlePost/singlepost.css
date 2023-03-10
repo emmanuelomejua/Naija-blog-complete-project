@@ -57,3 +57,20 @@
     font-weight: 600;
     text-transform: uppercase;
 }
+
+@media screen and (max-width: 480px){
+    .singlePostWrapper{
+        margin: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .singlePostInfo{
+        margin: 0 20px;
+    }
+    .singlePostDesc{
+        margin: 0 20px;
+    }
+}

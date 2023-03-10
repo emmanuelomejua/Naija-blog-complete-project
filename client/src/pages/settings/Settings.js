@@ -13,7 +13,7 @@ const Settings = () => {
             </div>
 
             <form className='settingsForm'>
-                <labe>Profile Picture</labe>
+                <label>Profile Picture</label>
                 <div className='settingsPP'>
                     <img src={img} alt='' />
                     <label htmlFor='fileInput'>
@@ -22,13 +22,13 @@ const Settings = () => {
                     <input type='file' id='fileInput' style={{display: 'none'}}/>
                 </div>
                 <label htmlFor='username'>Username</label>
-                <input type='text' id='' placeholder='email@email.com'/>
+                <input type='text' id='username' placeholder='email@email.com'/>
 
                 <label htmlFor='email'>Email</label>
-                <input type='email' id='' placeholder='email@email.com'/>
+                <input type='email' id='email' placeholder='email@email.com'/>
 
-                <label htmlFor='username'>Password</label>
-                <input type='password' id='' />
+                <label htmlFor='password'>Password</label>
+                <input type='password' id='password' />
 
                 <button className='settingSubmit'>Update</button>
             </form>

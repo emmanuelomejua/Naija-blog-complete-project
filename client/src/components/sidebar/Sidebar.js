@@ -6,8 +6,8 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='sidebarItem'>
-        <span className='sidebarTitle'>ABOUT ME</span>
-        <img src={img} alt=''/>
+        <span className='sidebarTitle'>ABOUT US</span>
+        <img src={img} alt='' className='img'/>
 
         <p>There is no hard rule that would define which components need props and which don't. It comes with experience and simply depends on the role of a component. 
         </p>

@@ -1,5 +1,6 @@
 .settings{
     display: flex;
+   
 }
 
 .settingsWrapper{
@@ -77,4 +78,14 @@
     padding: 10px;
     margin-top: 20px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 480px){
+    .settingsPP>img{
+        height: 100px;
+        width: 65%;
+    }
+    .settings{
+        flex-direction: column;
+    }
 }

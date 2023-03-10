@@ -20,6 +20,7 @@ const postSchema = new Schema({
         required: true
     },
     categories: {
+        name: String,
         type: Array
     }
 
