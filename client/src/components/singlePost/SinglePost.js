@@ -2,7 +2,7 @@ import './singlepost.css'
 import img from '../../assets/FB_IMG_1671999614097.jpg'
 import { Delete, Edit } from '@mui/icons-material'
 import { useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 
@@ -13,10 +13,12 @@ const SinglePost = ({post}) => {
   const location = useLocation()
   const path = location.pathname.split('/')[2]
 
+  const [post1, setPost1] = useState({})
+
   useEffect(()=> {
     const getPost = async () => {
       const res = await axios.get(`${url}/${path}`)
-      console.log(res)
+     setPost1(res.data)
     }
     getPost()
   }, [path])
@@ -27,7 +29,7 @@ const SinglePost = ({post}) => {
         <img src={img} alt='post' className='singlePostImg'/>
 
         <h1 className='singlePostTitle'>
-            This is a post title
+            {post1.title}
             <div className='singlePostEdit'>
                 <Edit className='singlePostIcon'/>
                 <Delete className='singlePostIcon'/>

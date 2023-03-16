@@ -1,9 +1,11 @@
 import './post.css'
 import img from '../../assets/FB_IMG_1671999614097.jpg'
 import { Link } from 'react-router-dom'
+import Single from '../../pages/single/Single'
 
 
 const Post = ({post}) => {
+
     return(
     <div className='post'>
         <img src={img} alt='post' className='postImg'/>
@@ -13,7 +15,7 @@ const Post = ({post}) => {
                      <span className='postCat' key={index}>{c.type}</span>
                 ))}
             </div>
-            <Link to={`/post/${post._id}`} className='link'>
+            <Link to={`/post/${post._id}`} className='link' element={<Single/>}>
                <span className='postTitle'>{post.title}</span>
             </Link>
            

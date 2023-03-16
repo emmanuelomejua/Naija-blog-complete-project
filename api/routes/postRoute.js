@@ -6,7 +6,7 @@ const  { createPost, updatePost, deletePost, getPost, getAllPost} = require('../
 router.post('/', createPost)
 router.put('/:id',  updatePost)
 router.delete('/:id', deletePost)
-router.get('/id', getPost)
+router.get('/:id', getPost)
 router.get('/',getAllPost)
 
 module.exports = router
