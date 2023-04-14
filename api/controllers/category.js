@@ -10,4 +10,13 @@ const Categries = async (req, res) => {
     }
 }
 
-module.exports = Categries 
+const getCat = async (req, res) => {
+    try {
+        const cat = await Category.find().limit(6)
+        res.status(200).json(cat)
+    } catch (error) {
+        res.status(500).json(err.message)
+    }
+}
+
+module.exports = { Categries, getCat }
