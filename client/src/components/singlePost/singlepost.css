@@ -18,6 +18,7 @@
     text-align: center;
     margin: 10px;
     font-size: 28px;
+    text-transform: capitalize;
 }
 
 .singlePostEdit{

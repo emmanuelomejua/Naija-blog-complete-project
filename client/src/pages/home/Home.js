@@ -14,7 +14,6 @@ const Home = () => {
     const fetchposts = async () => {
       const res = await axios.get(url)
       setPosts(res.data)
-      console.log(res)
     }
     fetchposts()
   }, [])

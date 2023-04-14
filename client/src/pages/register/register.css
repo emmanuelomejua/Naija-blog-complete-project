@@ -41,6 +41,10 @@
     padding: 10px;
 }
 
+.loginButton:disabled{
+    cursor: not-allowed;
+}
+
 .loginRegisterButton{
     position: absolute;
     top: 70px;
@@ -51,4 +55,8 @@
     border-radius: 10px;
     padding: 10px;
     background-color:  lightcoral;
+}
+
+.err{
+    color: red;
 }
