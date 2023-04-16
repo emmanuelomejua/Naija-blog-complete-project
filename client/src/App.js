@@ -8,10 +8,12 @@ import Home from "./pages/home/Home";
 import Single from "./pages/single/Single";
 import About from "./pages/about/About";
 import Contact from './pages/contact/Contact'
+import { useContext } from "react";
+import { context } from "./context/Context";
 
 
 function App() {
-  const user = true;
+  const {user} = useContext(context);
 
   return (
     <>

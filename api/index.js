@@ -8,6 +8,7 @@ const { json, urlencoded } = express
 const morgan = require('morgan')
 const cors = require('cors')
 const { log, error } = require('console')
+const multer = require('multer')
 
 //import routes
 const authRoute = require('./routes/authRoute')
@@ -34,6 +35,20 @@ app.use(cors({
 }))
 
 //routes use
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images')
+    },
+    filename: (reqq, file, cb) => {
+        cb(null, req.body.name)
+    },
+})
+
+const upload = multer({storage: storage})
+app.post('/blog/upload', upload.single('file'), (req, res) => {
+    res.status(200).json('File has been uploaded')
+})
+
 app.use('/blog', authRoute )
 app.use('/blog/user', userRoute )
 app.use('/blog/post', postRoute )

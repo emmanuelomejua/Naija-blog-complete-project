@@ -43,7 +43,7 @@ const Register = () => {
         <input type='password' placeholder='Confirm your password...' />
 
         <button className='loginButton' disabled={loading}>Register</button>
-        {error && <span className='err'>{error.message}</span>}
+        {error && <span className='err'>{error}</span>}
       </form>
 
       <button type='submit' className='loginRegisterButton'>

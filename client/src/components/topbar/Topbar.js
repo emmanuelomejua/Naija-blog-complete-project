@@ -2,10 +2,18 @@ import './topbar.css'
 import {Facebook, Instagram, Search, Twitter} from '@mui/icons-material';
 import avater from '../../assets/avater.jpg'
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { context } from '../../context/Context';
 
 
 const Topbar = () => {
-  const user = true
+
+  const { dispatch, user } = useContext(context)
+
+  const handleLogout = () => {
+    dispatch({type: 'LOGOUT'})
+  }
+
 
   return (
     <div className='top'>
@@ -28,7 +36,7 @@ const Topbar = () => {
           <li className='topListItem'>
           <Link to='/write' className='link'>Write</Link>
           </li>
-          <li className='topListItem link'>
+          <li className='topListItem link' onClick={handleLogout}>
             {user && 'Logout'}
           </li>
         </ul>
