@@ -2,41 +2,71 @@ import './singlepost.css'
 import img from '../../assets/FB_IMG_1671999614097.jpg'
 import { Delete, Edit } from '@mui/icons-material'
 import { Link, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
+import { context } from '../../context/Context'
 
 
 const SinglePost = () => {
 
+  const PF = 'http://localhost:4003/images/'
   const location = useLocation()
   const path = location.pathname.split('/')[2]
 
   const url = `http://localhost:4003/blog/post/${path}`
 
-
-
   const [post, setPost] = useState({})
+  const [title, setTitle] = useState('')
+  const [desc, setDesc] = useState('')
+  const [updateMode, setUpdateMode] = useState(false)
 
   useEffect(()=> {
     const getPost = async () => {
-      const res = await axios.get(url)
-      console.log(res)
-     setPost(res.data)
+      try {
+         const res = await axios.get(url)
+         setPost(res.data)
+      } catch (error) {
+        alert('An error occured')
+      }
+     
     }
     getPost()
   },[url])
 
+  const { user } = useContext(context)
+
+  const handleDelete = async (e) => {
+    try {
+      const res = await axios.delete(url, {data: { username: user.email }})
+      if(!res){
+        return 'Unable to delete, something went wrong'
+      } else {
+        window.location.replace('/')
+      }
+    } catch (error) {
+      throw error
+    }
+  }
+
   return (
     <div className='singlePost'>
       <div className='singlePostWrapper'>
-        <img src={img} alt='post' className='singlePostImg'/>
+        {
+          post.photo ?  <img src={PF + post.photo} alt='post' className='singlePostImg'/> :  <img src={img} alt='post' className='singlePostImg'/>
+        }
+
 
         <h1 className='singlePostTitle'>
             {post.title}
-            <div className='singlePostEdit'>
-                <Edit className='singlePostIcon'/>
-                <Delete className='singlePostIcon'/>
+            {
+              post.username === user?.email && (
+                <div className='singlePostEdit'>
+                <Edit className='singlePostIcon' onClick={(e) => setUpdateMode(true)}/>
+                <Delete className='singlePostIcon' onClick={handleDelete}/>
             </div>
+              )
+            }
+       
         </h1>
       </div>
       <div className='singlePostInfo'>

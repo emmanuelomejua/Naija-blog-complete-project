@@ -13,7 +13,7 @@ import { context } from "./context/Context";
 
 
 function App() {
-  const {user} = useContext(context);
+  const { user } = useContext(context);
 
   return (
     <>

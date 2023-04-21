@@ -8,6 +8,7 @@ import { context } from '../../context/Context';
 
 const Topbar = () => {
 
+  const PF = 'http://localhost:4003/images/'
   const { dispatch, user } = useContext(context)
 
   const handleLogout = () => {
@@ -45,7 +46,12 @@ const Topbar = () => {
         {
           user ? (
             <>
-             <img src={avater} alt='profile' className='topImg'/>
+            {
+              user.profilePic ? 
+              <img src={PF + user.profilePic} alt='' className='topImg'/> : 
+              <img src={avater} alt='' className='topImg'/>
+            }
+            
             </>
           ) : (
             <>

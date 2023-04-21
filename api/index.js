@@ -9,6 +9,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const { log, error } = require('console')
 const multer = require('multer')
+const path = require('path')
 
 //import routes
 const authRoute = require('./routes/authRoute')
@@ -23,6 +24,7 @@ const app = express()
 const connectDB = require('./config/db')
 
 //middlewares
+app.use('/images', express.static(path.join(__dirname, '/images')))
 app.use(morgan('common'))
 app.use(urlencoded({extended: false}))
 app.use(json())

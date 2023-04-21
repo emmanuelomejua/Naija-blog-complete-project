@@ -5,6 +5,7 @@ import axios from 'axios'
 
 const Register = () => {
 
+
   const url = 'http://localhost:4003/blog/register';
 
   const [email, setEmail] = useState('')
@@ -29,15 +30,17 @@ const Register = () => {
     }
   }
 
+
+
   return (
     <main className='login' onSubmit={handleSubmit}>
         <span className='loginTitle'>Register</span>
       <form className='loginForm'>
         <label htmlFor=''>Email:</label>
-        <input type='text' placeholder='Email' onChange={(e)=>setEmail(e.target.value)}/>
+        <input type='email' placeholder='Email' onChange={(e)=>setEmail(e.target.value)} required/>
 
         <label htmlFor=''>Password:</label>
-        <input type='password' placeholder='Enter your password...' onChange={(e)=>setPassword(e.target.value)}/>
+        <input type='password' placeholder='Enter your password...' onChange={(e)=>setPassword(e.target.value)} required/>
 
         <label htmlFor=''>Confirm Password:</label>
         <input type='password' placeholder='Confirm your password...' />

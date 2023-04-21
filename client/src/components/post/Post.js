@@ -6,9 +6,14 @@ import Single from '../../pages/single/Single'
 
 const Post = ({post}) => {
 
+    const PF = 'http://localhost:4003/images/'
+
     return(
     <div className='post'>
-        <img src={img} alt='post' className='postImg'/>
+        {
+            post.photo ?  <img src={PF + post.photo} alt='post' className='postImg'/> : <img src={img} alt='post' className='postImg'/>
+        }
+       
         <div className='postInfo'>
             <div className='postCats'>
                 {post.categories?.map((c)=> (
