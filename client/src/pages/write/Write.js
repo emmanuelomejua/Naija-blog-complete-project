@@ -19,7 +19,7 @@ const Write = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
-      username: user.email,
+      username: user.username,
       title,
       desc,
     }
