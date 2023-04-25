@@ -37,7 +37,7 @@ const SinglePost = () => {
 
   const handleDelete = async (e) => {
     try {
-      const res = await axios.delete(url, {data: { username: user.email }})
+      const res = await axios.delete(url, {data: { username: user.username }})
       if(!res){
         return 'Unable to delete, something went wrong'
       } else {
@@ -52,22 +52,29 @@ const SinglePost = () => {
     <div className='singlePost'>
       <div className='singlePostWrapper'>
         {
-          post.photo ?  <img src={PF + post.photo} alt='post' className='singlePostImg'/> :  <img src={img} alt='post' className='singlePostImg'/>
+          post.photo ?  <img src={PF+post.photo} alt='post' className='singlePostImg'/> :  <img src={img} alt='post' className='singlePostImg'/>
         }
 
-
-        <h1 className='singlePostTitle'>
+        {
+          updateMode ? 
+          <>
+          (
+            <input type='text' value={post.title} className='singlePostTitleInput'/>
+          )
+          </>:        
+           <h1 className='singlePostTitle'>
             {post.title}
             {
-              post.username === user?.email && (
+              post.username === user?.username && (
                 <div className='singlePostEdit'>
                 <Edit className='singlePostIcon' onClick={(e) => setUpdateMode(true)}/>
                 <Delete className='singlePostIcon' onClick={handleDelete}/>
             </div>
               )
             }
-       
-        </h1>
+           </h1>
+        }
+
       </div>
       <div className='singlePostInfo'>
         <span className='singlePostAuthor'>
@@ -75,9 +82,10 @@ const SinglePost = () => {
         </span>
         <span className='singlePostDate'>{new Date(post.createdAt).toDateString()}</span>
       </div>
-      <p  className='singlePostDesc'>
-        {post.desc}
-      </p>
+      {
+        updateMode ? <textarea  className='singlePostDescInput'/> : <p  className='singlePostDesc'> {post.desc}</p>
+      }
+      
     </div>
   )
 }

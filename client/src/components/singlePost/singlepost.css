@@ -59,6 +59,12 @@
     text-transform: uppercase;
 }
 
+.singlePostTitleInput{
+    margin: 10px;
+    font-size: 28px;
+    text-transform: capitalize;
+}
+
 @media screen and (max-width: 480px){
     .singlePostWrapper{
         margin: 0 10px;

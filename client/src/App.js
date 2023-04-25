@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/" element={!user ? <Login/> : <Home/>}/>
           <Route exact path="/login" element={!user ? <Login/>: <Home/>}/>
           <Route exact path="/register" element={!user ? <Register/> : <Home/>}/>
-          <Route exact path="/settings" element={<Settings/>}/>
+          <Route exact path="/settings" element={!user ? <Login/> :<Settings/>}/>
           <Route exact path="/write" element={!user ? <Login/> : <Write/>}/>
           <Route exact path="/post/:postId" element={!user ? <Login/> :<Single/>}/>
           <Route exact path="/about" element={!user ? <Login/> :<About/>}/>

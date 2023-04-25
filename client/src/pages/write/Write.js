@@ -1,6 +1,6 @@
 import { Add } from '@mui/icons-material'
 import './write.css'
-import img from '../../assets/1676915893233.jpg'
+// import img from '../../assets/1676915893233.jpg'
 import { useState } from 'react'
 import { useContext } from 'react'
 import { context } from '../../context/Context'
@@ -8,8 +8,8 @@ import axios from 'axios'
 
 const Write = () => {
 
-  const url1 = 'http://localhost:4003/blog/upload'
-  const url = 'http://localhost:4003/blog/post/'
+  const url1 = 'http://localhost:4003/blog/upload/'
+  // const url = 'http://localhost:4003/blog/post'
 
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
@@ -37,8 +37,8 @@ const Write = () => {
       }
     }
       try {
-        const res = await axios.post(url, newPost)
-        window.location.replace(url + res.data._id)
+        const res = await axios.post('/post', newPost)
+        window.location.replace('/post/' + res.data._id)
 
       } catch (error) {
         throw error
@@ -47,12 +47,12 @@ const Write = () => {
 
 
   return (
-    <div className='write'onSubmit={handleSubmit}>
+    <div className='write'>
       {
         file &&  <img src={URL.createObjectURL(file)} alt='' className='writeImg'/>
       }
        
-      <form className='writeForm'>
+      <form className='writeForm' onSubmit={handleSubmit}>
 
         <div className='writeFormGroup'>
             <label htmlFor='fileInput'>

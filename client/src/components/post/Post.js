@@ -11,7 +11,7 @@ const Post = ({post}) => {
     return(
     <div className='post'>
         {
-            post.photo ?  <img src={PF + post.photo} alt='post' className='postImg'/> : <img src={img} alt='post' className='postImg'/>
+            post.photo ?  <img src={PF+post.photo} alt='post' className='postImg'/> : <img src={img} alt='post' className='postImg'/>
         }
        
         <div className='postInfo'>
