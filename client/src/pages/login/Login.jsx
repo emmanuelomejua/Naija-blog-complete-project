@@ -10,7 +10,7 @@ const Login = () => {
   const url = 'http://localhost:4003/blog/login'
   const userRef = useRef()
   const passwordRef = useRef()
-  const { user, dispatch, loading } = useContext(context)
+  const { user, dispatch, loading, error } = useContext(context)
 
   const handleeSubmit = async (e) => {
     e.preventDefault();
@@ -38,6 +38,7 @@ const Login = () => {
         <input type='password' placeholder='Enter password...' ref={passwordRef}/>
 
         <button type='submit' className='loginButton' disabled={loading}>Login</button>
+        {error && <span className='input-error'>Please enter a valid email and password</span>}
       </form>
 
       <button className='loginRegisterButton'>

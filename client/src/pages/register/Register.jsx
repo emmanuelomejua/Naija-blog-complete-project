@@ -5,25 +5,6 @@ import axios from 'axios'
 
 const Register = () => {
 
-  const inputs = [
-    {
-      name: 'email',
-      errMsg: 'Pls enter a vallid email'
-    },
-    {
-      name: 'username',
-      errMsg: 'Username must be at 4 digits'
-    },
-    {
-      name: 'password',
-      errMsg: 'Password must contain at least 4 characters'
-    },
-    {
-      name: 'email',
-      errMsg: 'Password and confirm password must match'
-    },
-  ]
-
   const [values, setValues ] = useState({
     email: '',
     username: '',

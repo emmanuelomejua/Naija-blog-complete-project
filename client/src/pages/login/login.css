@@ -57,3 +57,8 @@
     padding: 10px;
     background-color: teal;
 }
+
+.input-error{
+    font-size: 16px;
+    color: crimson;
+}

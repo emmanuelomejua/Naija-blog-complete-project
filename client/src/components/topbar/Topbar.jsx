@@ -28,9 +28,9 @@ const Topbar = () => {
           <li className='topListItem'>
             <Link to='/' className='link'>Home</Link>
           </li>
-          <li className='topListItem'>
+          {/* <li className='topListItem'>
             <Link to='/about' className='link'> About</Link>
-          </li>
+          </li> */}
           <li className='topListItem'>
             <Link to='/contact' className='link'>Contact</Link>
           </li>
