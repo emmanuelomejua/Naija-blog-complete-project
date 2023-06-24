@@ -1,6 +1,6 @@
 const Category = require('../models/Category')
 
-const Categries = async (req, res) => {
+const Categories = async (req, res) => {
     const newCat = new Category(req.body)
     try {
         const savedCat = await newCat.save()
@@ -19,4 +19,4 @@ const getCat = async (req, res) => {
     }
 }
 
-module.exports = { Categries, getCat }
+module.exports = { Categories, getCat }

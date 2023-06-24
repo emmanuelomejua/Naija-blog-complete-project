@@ -1,5 +1,5 @@
 import './settings.css'
-import Sidebar from '../../components/sidebar/Sidebar'
+import { Sidebar } from '../../components'
 import { PersonRounded } from '@mui/icons-material'
 import img from '../../assets/1676721627373.jpg'
 

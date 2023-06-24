@@ -1,7 +1,6 @@
 import './single.css'
 // import Topbar from '../../components/topbar/Topbar'
-import Sidebar from '../../components/sidebar/Sidebar'
-import SinglePost from '../../components/singlePost/SinglePost'
+import { Sidebar, SinglePost} from '../../components'
 
 const Single = () => {
   return (

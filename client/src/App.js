@@ -1,13 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Topbar from "./components/topbar/Topbar";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
-import Settings from "./pages/settings/Settings";
-import Write from "./pages/write/Write";
-import Home from "./pages/home/Home";
-import Single from "./pages/single/Single";
-import About from "./pages/about/About";
-import Contact from './pages/contact/Contact'
+import { Topbar } from "./components";
+import { Login, Register, Settings, Write, Home, Single, About, Contact } from "./pages";
 import { useContext } from "react";
 import { context } from "./context/Context";
 
