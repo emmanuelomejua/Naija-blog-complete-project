@@ -3,48 +3,6 @@ import { Link } from 'react-router-dom'
 import './register.css'
 import axios from 'axios'
 
-const inputs = [
-  {
-    id: 1,
-    name: 'email',
-    type: 'email',
-    placeholder: 'Email',
-    minLength : 4,
-    maxLength: 20,
-    required: true,
-    errMsg: 'Email must at least 4 characters',
-  },
-  {
-    id: 2,
-    name: 'email',
-    type: 'email',
-    placeholder: 'Email',
-    minLength : 4,
-    maxLength: 20,
-    required: true,
-    errMsg: 'Email must at least 4 characters',
-  },
-  {
-    id: 3,
-    name: 'email',
-    type: 'email',
-    placeholder: 'Email',
-    minLength : 4,
-    maxLength: 20,
-    required: true,
-    errMsg: 'Email must at least 4 characters',
-  },
-  {
-    id: 4,
-    name: 'email',
-    type: 'email',
-    placeholder: 'Email',
-    minLength : 4,
-    maxLength: 20,
-    required: true,
-    errMsg: 'Email must at least 4 characters',
-  },
-]
 
 const Register = () => {
 
@@ -54,6 +12,49 @@ const Register = () => {
     password: '',
     confirmPassword: ''
   })
+
+  const inputs = [
+    {
+      id: 1,
+      name: 'username',
+      type: 'text',
+      placeholder: 'Username',
+      errorMessage: 'Username must contain a minimum of 4 characters',
+      label: 'Username',
+      pattern: '[A-Za-z0-9]{4,20}$',
+      required: true
+    },
+    {
+      id: 2,
+      name: 'email',
+      type: 'email',
+      placeholder: 'Email',
+      errorMessage: 'Please enter a valid email address',
+      label: 'Email',
+      required: true
+    },
+    {
+      id: 3,
+      name: 'password',
+      type: 'password',
+      placeholder: 'Password',
+      errorMessage: 'Password must be a minimum of 4 characters',
+      pattern: '/{4,25}$/',
+      label: 'Password',
+     
+      required: true
+    },
+    {
+      id: 4,
+      name: 'confirmPassword',
+      type: 'password',
+      placeholder: 'Confirm Password',
+      errorMessage: 'Password and Confirm Password must match',
+      label: 'Confirm Password',
+      pattern: values.password,
+      required: true
+    },
+  ]
 
   const handleChange = (e) => {
     setValues({...values, [e.target.name]: e.target.value})
@@ -97,6 +98,8 @@ const Register = () => {
         <span className='loginTitle'>Register</span>
       <form className='loginForm'>
 
+ 
+
         <label htmlFor='email'>Email:</label>
         <input 
           type='email' 
@@ -107,7 +110,7 @@ const Register = () => {
           required 
           minLength={4} 
           maxLength={20}
-          onFocus={handleBlur}
+          onBlur={handleBlur}
           focused={blured.toString()}
           className='input1'
         />
@@ -139,7 +142,7 @@ const Register = () => {
           onFocus={handleBlur}
           focused={blured.toString()}
           className='input3'
-        />
+        /> 
           <span className='input-error'>Password must be a minimum of 4 characters</span>
 
         <label htmlFor='confirmPassword'>Confirm Password:</label>

@@ -30,6 +30,7 @@
     background-color: white;
     border: none;
     width: 320px;
+    /* margin: 10px; */
 }
 
 .loginForm>input:focus{
@@ -43,7 +44,7 @@
     border: none;
     color: white;
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 5px;
 }
 
 .loginButton:disabled{
@@ -68,34 +69,10 @@
     display: none;
 }
 
-.input1:invalid[focused = 'true'] ~ .input-error{
+input:invalid[focused = 'true'] ~ .input-error{
     display: block;
 }
 
-.input2:invalid[focused = 'true'] ~ .input-error{
-    display: block;
-}
-
-.input3:invalid[focused = 'true'] ~ .input-error{
-    display: block;
-}
-
-.input4:invalid[focused = 'true'] ~ .input-error{
-    display: block;
-}
-
-.input1:invalid[focused = 'true']{
-    outline: .5px solid crimson;
-}
-
-.input2:invalid[focused = 'true']{
-    outline: .5px solid crimson;
-}
-
-.input3:invalid[focused = 'true']{
-    outline: .5px solid crimson;
-}
-
-.input4:invalid[focused = 'true']{
+input:invalid[focused = 'true']{
     outline: .5px solid crimson;
 }
