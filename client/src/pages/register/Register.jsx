@@ -3,6 +3,49 @@ import { Link } from 'react-router-dom'
 import './register.css'
 import axios from 'axios'
 
+const inputs = [
+  {
+    id: 1,
+    name: 'email',
+    type: 'email',
+    placeholder: 'Email',
+    minLength : 4,
+    maxLength: 20,
+    required: true,
+    errMsg: 'Email must at least 4 characters',
+  },
+  {
+    id: 2,
+    name: 'email',
+    type: 'email',
+    placeholder: 'Email',
+    minLength : 4,
+    maxLength: 20,
+    required: true,
+    errMsg: 'Email must at least 4 characters',
+  },
+  {
+    id: 3,
+    name: 'email',
+    type: 'email',
+    placeholder: 'Email',
+    minLength : 4,
+    maxLength: 20,
+    required: true,
+    errMsg: 'Email must at least 4 characters',
+  },
+  {
+    id: 4,
+    name: 'email',
+    type: 'email',
+    placeholder: 'Email',
+    minLength : 4,
+    maxLength: 20,
+    required: true,
+    errMsg: 'Email must at least 4 characters',
+  },
+]
+
 const Register = () => {
 
   const [values, setValues ] = useState({
@@ -21,6 +64,12 @@ const Register = () => {
 
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const [blured, setBlured] = useState(false)
+
+  const handleBlur = (e) => {
+    setBlured(true)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,8 +107,11 @@ const Register = () => {
           required 
           minLength={4} 
           maxLength={20}
+          onFocus={handleBlur}
+          focused={blured.toString()}
+          className='input1'
         />
-        {error.email && <span>Email must be at least 4 characters</span>}
+        <span className='input-error'>Email must be at least 4 characters</span>
 
         <label htmlFor='username'>Username:</label>
         <input 
@@ -70,8 +122,11 @@ const Register = () => {
           onChange={handleChange} 
           required 
           minLength={4}
+          onFocus={handleBlur}
+          focused={blured.toString()}
+          className='input2'
         />
-         {error.username && <span>Username must be a minimum of 4 characters</span>}
+         <span className='input-error'>Username must be a minimum of 4 characters</span>
 
         <label htmlFor='password'>Password:</label>
         <input type='password' 
@@ -81,8 +136,11 @@ const Register = () => {
           onChange={handleChange} 
           required 
           minLength={4}
+          onFocus={handleBlur}
+          focused={blured.toString()}
+          className='input3'
         />
-         {error.password && <span>Password must be a minimum of 4 characters</span>}
+          <span className='input-error'>Password must be a minimum of 4 characters</span>
 
         <label htmlFor='confirmPassword'>Confirm Password:</label>
         <input 
@@ -93,8 +151,11 @@ const Register = () => {
           onChange={handleChange}  
           pattern={values.password} 
           required
+          onFocus={handleBlur}
+          focused={blured.toString()}
+          className='input4'
         />
-           {error.confirmPassword && <span className='input-error'>Password and confirm password must match</span>}
+           <span className='input-error'>Password and confirm password must match</span>
 
         <button className='loginButton' disabled={loading}>Register</button>
        

@@ -29,6 +29,11 @@
     padding: 10px;
     background-color: white;
     border: none;
+    width: 320px;
+}
+
+.loginForm>input:focus{
+    outline: none;
 }
 
 .loginButton{
@@ -60,4 +65,37 @@
 .input-error{
     font-size: 12px;
     color: crimson;
+    display: none;
+}
+
+.input1:invalid[focused = 'true'] ~ .input-error{
+    display: block;
+}
+
+.input2:invalid[focused = 'true'] ~ .input-error{
+    display: block;
+}
+
+.input3:invalid[focused = 'true'] ~ .input-error{
+    display: block;
+}
+
+.input4:invalid[focused = 'true'] ~ .input-error{
+    display: block;
+}
+
+.input1:invalid[focused = 'true']{
+    outline: .5px solid crimson;
+}
+
+.input2:invalid[focused = 'true']{
+    outline: .5px solid crimson;
+}
+
+.input3:invalid[focused = 'true']{
+    outline: .5px solid crimson;
+}
+
+.input4:invalid[focused = 'true']{
+    outline: .5px solid crimson;
 }
