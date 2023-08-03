@@ -13,49 +13,6 @@ const Register = () => {
     confirmPassword: ''
   })
 
-  const inputs = [
-    {
-      id: 1,
-      name: 'username',
-      type: 'text',
-      placeholder: 'Username',
-      errorMessage: 'Username must contain a minimum of 4 characters',
-      label: 'Username',
-      pattern: '[A-Za-z0-9]{4,20}$',
-      required: true
-    },
-    {
-      id: 2,
-      name: 'email',
-      type: 'email',
-      placeholder: 'Email',
-      errorMessage: 'Please enter a valid email address',
-      label: 'Email',
-      required: true
-    },
-    {
-      id: 3,
-      name: 'password',
-      type: 'password',
-      placeholder: 'Password',
-      errorMessage: 'Password must be a minimum of 4 characters',
-      pattern: '/{4,25}$/',
-      label: 'Password',
-     
-      required: true
-    },
-    {
-      id: 4,
-      name: 'confirmPassword',
-      type: 'password',
-      placeholder: 'Confirm Password',
-      errorMessage: 'Password and Confirm Password must match',
-      label: 'Confirm Password',
-      pattern: values.password,
-      required: true
-    },
-  ]
-
   const handleChange = (e) => {
     setValues({...values, [e.target.name]: e.target.value})
   }
@@ -65,7 +22,6 @@ const Register = () => {
 
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
-
   const [blured, setBlured] = useState(false)
 
   const handleBlur = (e) => {
@@ -95,10 +51,8 @@ const Register = () => {
 
   return (
     <main className='login' onSubmit={handleSubmit}>
-        <span className='loginTitle'>Register</span>
+        <h2 className='loginTitle'>Register</h2>
       <form className='loginForm'>
-
- 
 
         <label htmlFor='email'>Email:</label>
         <input 
@@ -112,9 +66,9 @@ const Register = () => {
           maxLength={20}
           onBlur={handleBlur}
           focused={blured.toString()}
-          className='input1'
+         
         />
-        <span className='input-error'>Email must be at least 4 characters</span>
+      <span className='input-error'>Email must be at least 4 characters</span>
 
         <label htmlFor='username'>Username:</label>
         <input 
@@ -127,9 +81,8 @@ const Register = () => {
           minLength={4}
           onFocus={handleBlur}
           focused={blured.toString()}
-          className='input2'
         />
-         <span className='input-error'>Username must be a minimum of 4 characters</span>
+   <span className='input-error'>Username must be a minimum of 4 characters</span>
 
         <label htmlFor='password'>Password:</label>
         <input type='password' 
@@ -141,7 +94,7 @@ const Register = () => {
           minLength={4}
           onFocus={handleBlur}
           focused={blured.toString()}
-          className='input3'
+         
         /> 
           <span className='input-error'>Password must be a minimum of 4 characters</span>
 
@@ -156,7 +109,7 @@ const Register = () => {
           required
           onFocus={handleBlur}
           focused={blured.toString()}
-          className='input4'
+         
         />
            <span className='input-error'>Password and confirm password must match</span>
 

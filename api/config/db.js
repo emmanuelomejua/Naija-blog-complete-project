@@ -9,7 +9,7 @@ const {set, connect } = mongoose
 
 set('strictQuery', true)
 
-const db_url = process.env.DB_URI || 'mongodb://127.0.0.1/blog'
+const db_url = process.env.DB_URI 
 
 connect(db_url, {
     useUnifiedTopology: true,

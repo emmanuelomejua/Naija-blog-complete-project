@@ -2,10 +2,12 @@ import { createContext, useEffect, useReducer } from "react";
 import Reducer from "./Reducer";
 
 const INITIAL_STATE = {
-    user: null,
+    user: JSON.parse(localStorage.getItem('user')) || null,
     loading: false,
     error: false,
 };
+
+console.log(JSON.parse(localStorage.getItem('user')))
 
 export const context = createContext(INITIAL_STATE)
 
