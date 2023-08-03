@@ -64,15 +64,15 @@
 }
 
 .input-error{
-    font-size: 8px;
+    font-size: 11px;
     color: crimson;
-    display: none;
-}
-
-input:invalid[focused='true'] ~ .input-error{
     display: block;
 }
 
-input:invalid[focused='true']{
-    outline: .5px solid crimson;
+.input-error1{
+    border: 1px solid crimson;
+    padding: 10px;
+    background-color: white;
+    width: 320px;
+    outline: 1px solid crimson;
 }

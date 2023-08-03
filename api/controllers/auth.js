@@ -9,18 +9,22 @@ const encryptPassword = (password) => {
 
 //register
 const Register = async (req, res) => {
-    const { email, password } = req.body
+
     const userExists = await User.findOne({email: req.body.email})
+
+    const {email, username, password} = req.body
+
     if(userExists){
         res.status(400).json('A user with this email already exists')
     } else {
         try {
             const newUser = new User({
-                email,
+                ...req.body,
                 password: encryptPassword(password)
             })
     
             const user = await newUser.save()
+            
             res.status(201).json(user)
         } catch (error) {
             res.status(500).json(error.message)

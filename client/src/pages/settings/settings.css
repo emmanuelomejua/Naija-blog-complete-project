@@ -1,6 +1,7 @@
 .settings{
     display: flex;
-   
+    background-color: #fff;
+    height: 100vh;
 }
 
 .settingsWrapper{

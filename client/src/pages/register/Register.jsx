@@ -2,35 +2,20 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './register.css'
 import axios from 'axios'
-
-
+import { useFormik } from 'formik'
+import { validationSchema } from '../../utils/loginValidation'
+ 
 const Register = () => {
-
-  const [values, setValues ] = useState({
-    email: '',
-    username: '',
-    password: '',
-    confirmPassword: ''
-  })
-
-  const handleChange = (e) => {
-    setValues({...values, [e.target.name]: e.target.value})
-  }
-
 
   const url = 'http://localhost:4003/blog/register';
 
+  
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [blured, setBlured] = useState(false)
-
-  const handleBlur = (e) => {
-    setBlured(true)
-  }
-
-  const handleSubmit = async (e) => {
+  
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const {email, username, password} = values
       setLoading(true)
@@ -48,11 +33,22 @@ const Register = () => {
   }
 
 
+  const { handleChange, handleBlur,   errors, touched, isSubmitting, values, handleSubmit } = useFormik({
+    initialValues: {
+        email: '',
+        password: '',
+        username: '',
+        confirmPassword: ''
+    },
+    validationSchema: validationSchema,
+    onSubmit: handleFormSubmit
+})
+
 
   return (
     <main className='login' onSubmit={handleSubmit}>
         <h2 className='loginTitle'>Register</h2>
-      <form className='loginForm'>
+      <form className='loginForm' onSubmit={handleFormSubmit} autoComplete='off'>
 
         <label htmlFor='email'>Email:</label>
         <input 
@@ -62,13 +58,10 @@ const Register = () => {
           value={values.email} 
           onChange={handleChange} 
           required 
-          minLength={4} 
-          maxLength={20}
           onBlur={handleBlur}
-          focused={blured.toString()}
-         
+          className={errors.email && touched.email ? 'input-error1' : ''}
         />
-      <span className='input-error'>Email must be at least 4 characters</span>
+         {errors.email && touched.email && <span className='input-error'>{errors.email}</span>}
 
         <label htmlFor='username'>Username:</label>
         <input 
@@ -79,10 +72,10 @@ const Register = () => {
           onChange={handleChange} 
           required 
           minLength={4}
-          onFocus={handleBlur}
-          focused={blured.toString()}
+          onBlur={handleBlur}
+          className={errors.username && touched.username ? 'input-error1' : ''}
         />
-   <span className='input-error'>Username must be a minimum of 4 characters</span>
+        {errors.username && touched.username && <span className='input-error'>{errors.username}</span>}
 
         <label htmlFor='password'>Password:</label>
         <input type='password' 
@@ -92,11 +85,10 @@ const Register = () => {
           onChange={handleChange} 
           required 
           minLength={4}
-          onFocus={handleBlur}
-          focused={blured.toString()}
-         
+          onBlur={handleBlur}
+          className={errors.password && touched.password ? 'input-error1' : ''}
         /> 
-          <span className='input-error'>Password must be a minimum of 4 characters</span>
+         {errors.password && touched.password && <span className='input-error'>{errors.password}</span>}
 
         <label htmlFor='confirmPassword'>Confirm Password:</label>
         <input 
@@ -107,17 +99,16 @@ const Register = () => {
           onChange={handleChange}  
           pattern={values.password} 
           required
-          onFocus={handleBlur}
-          focused={blured.toString()}
-         
+          onBlur={handleBlur}
+          className={errors.confirmPassword && touched.confirmPassword ? 'input-error1' : ''}
         />
-           <span className='input-error'>Password and confirm password must match</span>
+         {errors.confirmPassword && touched.confirmPassword && <span className='input-error'>{errors.confirmPassword}</span>}
 
-        <button className='loginButton' disabled={loading}>Register</button>
+        <button type='submit' className='loginButton' disabled={isSubmitting}>Register</button>
        
       </form>
 
-      <button type='submit' className='loginRegisterButton'>
+      <button className='loginRegisterButton'>
           <Link to='/login' className='link' style={{color:'white'}}>Login</Link>
       </button>
     </main>

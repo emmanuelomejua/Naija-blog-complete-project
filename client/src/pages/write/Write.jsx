@@ -1,6 +1,5 @@
 import { Add } from '@mui/icons-material'
 import './write.css'
-// import img from '../../assets/1676915893233.jpg'
 import { useState } from 'react'
 import { useContext } from 'react'
 import { context } from '../../context/Context'

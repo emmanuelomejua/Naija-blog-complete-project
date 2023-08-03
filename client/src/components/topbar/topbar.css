@@ -53,6 +53,12 @@
     color: whitesmoke;
 }
 
+.topbar__username{
+    color: whitesmoke;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
 .topSearchIcon{
     font-size: 18px;
     color: whitesmoke;

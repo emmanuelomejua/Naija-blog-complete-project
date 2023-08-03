@@ -29,7 +29,7 @@ const Topbar = () => {
           </li>
 
           <li className='topListItem'>
-            <Link to='/contact' className='link'>Contact</Link>
+            <Link to='/settings' className='link'>Setting</Link>
           </li>
           <li className='topListItem'>
           <Link to='/write' className='link'>Write</Link>
@@ -42,9 +42,11 @@ const Topbar = () => {
       <div className='topRight'>
         {
           user ? (
+              <>
+                <img src={user.profilePic ? user.profilePic : noprofile} alt='' className='topImg'/> 
+                <span className='topbar__username'> {user.username}</span>
 
-              <img src={user.profilePic ? user.profilePic : noprofile} alt='' className='topImg'/> 
-            
+              </>
           ) : (
             <>
             <ul className='topList'>
@@ -59,7 +61,7 @@ const Topbar = () => {
           </>
           )
         }
-        <Search className='topSearchIcon'/>
+        {/* <Search className='topSearchIcon'/> */}
       </div>
     </div>
   )
