@@ -1,7 +1,7 @@
 import './settings.css'
 import { Sidebar } from '../../components'
 import { PersonRounded } from '@mui/icons-material'
-import img from '../../assets/1676721627373.jpg'
+import { noprofile } from '../../contants/images'
 
 const Settings = () => {
   return (
@@ -15,7 +15,7 @@ const Settings = () => {
             <form className='settingsForm'>
                 <label>Profile Picture</label>
                 <div className='settingsPP'>
-                    <img src={img} alt='' />
+                    <img src={noprofile} alt='' />
                     <label htmlFor='fileInput'>
                         <PersonRounded className='settingsPPIcon'/>
                     </label>

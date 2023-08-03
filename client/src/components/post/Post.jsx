@@ -1,18 +1,17 @@
 import './post.css'
-import img from '../../assets/FB_IMG_1671999614097.jpg'
+import { breaking } from '../../contants/images'
 import { Link } from 'react-router-dom'
 import Single from '../../pages/single/Single'
 
 
 const Post = ({post}) => {
 
-    const PF = 'http://localhost:4003/images/'
 
     return(
     <div className='post'>
-        {
-            post.photo ?  <img src={PF+post.photo} alt='post' className='postImg'/> : <img src={img} alt='post' className='postImg'/>
-        }
+        
+         <img src={post.photo ? post.photo: breaking} alt='post' className='postImg'/> 
+        
        
         <div className='postInfo'>
             <div className='postCats'>

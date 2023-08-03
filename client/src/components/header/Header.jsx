@@ -1,5 +1,5 @@
 import './header.css'
-import img from '../../assets/avater1.jpg'
+import { cover } from '../../contants/images'
 
 const Header = () => {
   return (
@@ -8,7 +8,7 @@ const Header = () => {
             <span className='headerTitleSm'>New & popular</span>
             <span className='headerTitleLg'>Blog</span>
         </div>
-        <img src={img} alt='' className='headerImg'/>
+        <img src={cover} alt='' className='headerImg'/>
     </div>
   )
 }

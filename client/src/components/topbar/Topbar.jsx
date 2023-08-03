@@ -1,6 +1,6 @@
 import './topbar.css'
 import {Facebook, Instagram, Search, Twitter} from '@mui/icons-material';
-import avater from '../../assets/avater.jpg'
+import { noprofile } from '../../contants/images';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { context } from '../../context/Context';
@@ -8,7 +8,6 @@ import { context } from '../../context/Context';
 
 const Topbar = () => {
 
-  const PF = 'http://localhost:4003/images/'
   const { dispatch, user } = useContext(context)
 
   const handleLogout = () => {
@@ -28,9 +27,7 @@ const Topbar = () => {
           <li className='topListItem'>
             <Link to='/' className='link'>Home</Link>
           </li>
-          {/* <li className='topListItem'>
-            <Link to='/about' className='link'> About</Link>
-          </li> */}
+
           <li className='topListItem'>
             <Link to='/contact' className='link'>Contact</Link>
           </li>
@@ -45,14 +42,9 @@ const Topbar = () => {
       <div className='topRight'>
         {
           user ? (
-            <>
-            {
-              user.profilePic ? 
-              <img src={PF + user.profilePic} alt='' className='topImg'/> : 
-              <img src={avater} alt='' className='topImg'/>
-            }
+
+              <img src={user.profilePic ? user.profilePic : noprofile} alt='' className='topImg'/> 
             
-            </>
           ) : (
             <>
             <ul className='topList'>

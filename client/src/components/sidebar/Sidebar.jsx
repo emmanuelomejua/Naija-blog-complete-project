@@ -1,5 +1,5 @@
 import './sidebar.css'
-import img from '../../assets/avater.jpg'
+import { side } from '../../contants/images'
 import { Facebook, Instagram, Twitter } from '@mui/icons-material'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -9,7 +9,8 @@ const Sidebar = () => {
   const [cat, setCat] = useState([])
   const url = 'http://localhost:4003/blog/category'
 
-  useEffect(()=>{
+  useEffect(() => {
+
     const getCats = async () => {
       try {
         const res = await axios.get(url)
@@ -19,6 +20,7 @@ const Sidebar = () => {
       }
     }
     getCats()
+    
   },[url])
 
 
@@ -26,7 +28,7 @@ const Sidebar = () => {
     <div className='sidebar'>
       <div className='sidebarItem'>
         <span className='sidebarTitle'>ABOUT US</span>
-        <img src={img} alt='' className='img'/>
+        <img src={side} alt='' />
 
         <p>There is no hard rule that would define which components need props and which don't. It comes with experience and simply depends on the role of a component. 
         </p>

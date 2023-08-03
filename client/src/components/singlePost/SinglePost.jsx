@@ -1,5 +1,5 @@
 import './singlepost.css'
-import img from '../../assets/FB_IMG_1671999614097.jpg'
+import { breaking } from '../../contants/images'
 import { Delete, Edit } from '@mui/icons-material'
 import { Link, useLocation } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
@@ -9,7 +9,6 @@ import { context } from '../../context/Context'
 
 const SinglePost = () => {
 
-  const PF = 'http://localhost:4003/images/'
   const location = useLocation()
   const path = location.pathname.split('/')[2]
 
@@ -37,7 +36,7 @@ const SinglePost = () => {
 
   const handleDelete = async (e) => {
     try {
-      const res = await axios.delete(url, {data: { username: user.username }})
+      const res = await axios.delete(url, {data: { email: user.email }})
       if(!res){
         return 'Unable to delete, something went wrong'
       } else {
@@ -51,10 +50,9 @@ const SinglePost = () => {
   return (
     <div className='singlePost'>
       <div className='singlePostWrapper'>
-        {
-          post.photo ?  <img src={PF+post.photo} alt='post' className='singlePostImg'/> :  <img src={img} alt='post' className='singlePostImg'/>
-        }
 
+         <img src={post.photo ? post.photo: breaking} alt='post' className='singlePostImg'/> 
+        
         {
           updateMode ? 
           <>
@@ -65,7 +63,7 @@ const SinglePost = () => {
            <h1 className='singlePostTitle'>
             {post.title}
             {
-              post.username === user?.username && (
+              post.email === user?.email && (
                 <div className='singlePostEdit'>
                 <Edit className='singlePostIcon' onClick={(e) => setUpdateMode(true)}/>
                 <Delete className='singlePostIcon' onClick={handleDelete}/>
@@ -78,7 +76,7 @@ const SinglePost = () => {
       </div>
       <div className='singlePostInfo'>
         <span className='singlePostAuthor'>
-          Author: <b><Link to={`/?user=${post.username}`} className='link'>{post.username}</Link></b>
+          Author: <b><Link to={`/?user=${post.email}`} className='link'>{post.username}</Link></b>
         </span>
         <span className='singlePostDate'>{new Date(post.createdAt).toDateString()}</span>
       </div>
