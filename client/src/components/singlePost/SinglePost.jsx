@@ -43,7 +43,7 @@ const SinglePost = () => {
         window.location.replace('/')
       }
     } catch (error) {
-      throw error
+      throw Error
     }
   }
 

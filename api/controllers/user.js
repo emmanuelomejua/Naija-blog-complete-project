@@ -4,19 +4,30 @@ const Post = require('../models/Post')
 
 //update
 const updateUser = async (req, res) => {
-    if(req.body.userId === req.params.id){
-        if(req.body.password){
-            const salt = await bcrypt.genSalt(10)
-            req.body.password = await bcrypt.hash(req.body.password, salt)
+
+    try {
+        
+        if(req.body.userId === req.params.id){
+
+            if(req.body.password){
+                const salt = await bcrypt.genSalt(10)
+
+                req.body.password = await bcrypt.hash(req.body.password, salt)
+            }
+            try {
+                const updated = await User.findByIdAndUpdate(req.params.id, 
+                    {$set: req.body}, {new: true})
+
+                res.status(200).json(updated)
+
+            } catch (err) {
+                res.status(500).json(err.message)
+            }
+        } else {
+            res.status(403).send({ message: 'You are not allowed to perform this action'})
         }
-        try {
-            const updated = await User.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
-            res.status(200).json(updated)
-        } catch (err) {
-            res.status(500).json(err.message)
-        }
-    } else {
-        res.status(401).send({msg: 'You are not allowed to perform this action'})
+    } catch (error) {
+         res.status(500).json(err.message)
     }
 }
 

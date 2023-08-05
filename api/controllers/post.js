@@ -16,7 +16,7 @@ const createPost = async (req, res) => {
 const updatePost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
-        if(post.username === req.body.username){
+        if(post.email === req.body.email){
             try {
                 const update = await Post.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
                 res.status(200).json(update)
@@ -37,7 +37,7 @@ const deletePost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
         
-        if(post.username === req.body.username){
+        if(post.email === req.body.email){
             try {
                 await Post.findByIdAndDelete(post)
                 res.status(200).send({msg: 'Post has been deleted'})
@@ -64,12 +64,12 @@ const getPost = async (req, res) => {
 
 //get all post
 const getAllPost = async (req, res) => {
-    const username = req.query.user
+    const email = req.query.user
     const catname = req.query.cat
     try {
         let posts;
-        if(username){
-            posts = await Post.find({username})
+        if(email){
+            posts = await Post.find({email})
         } else if(catname) {
             posts = await Post.find({categories: {
                 $in: [catname]

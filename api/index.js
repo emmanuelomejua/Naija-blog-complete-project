@@ -17,7 +17,7 @@ const userRoute = require('./routes/userRoute')
 const postRoute = require('./routes/postRoute')
 const categoryRoute = require('./routes/categoryRoute')
 
-
+//bind with express server
 const app = express()
 
 //DB connection
@@ -57,7 +57,7 @@ app.use('/blog/post', postRoute )
 app.use('/blog/category', categoryRoute)
 
 //connection to port
-const port = process.env.PORT || 4003
+const port = process.env.PORT
 
 app.listen(port, (err) => {
     if(!err){

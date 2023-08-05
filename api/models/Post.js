@@ -6,7 +6,6 @@ const postSchema = new Schema({
     title:{
         type: String,
         required: true,
-        unique: true
     },
     desc: {
         type: String,
@@ -15,13 +14,13 @@ const postSchema = new Schema({
     photo: {
         type: String,
     },
-    username: {
+    email: {
         type: String,
         required: true
     },
     categories: {
         name: String,
-        type: Array
+        type: String
     }
 
 }, {timestamps: true})
