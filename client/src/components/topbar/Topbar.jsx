@@ -1,26 +1,30 @@
 import './topbar.css'
-import {Facebook, Instagram, Search, Twitter} from '@mui/icons-material';
+// import {Facebook, Instagram, Search, Twitter} from '@mui/icons-material';
 import { noprofile } from '../../contants/images';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { context } from '../../context/Context';
 
 
+
 const Topbar = () => {
+
+  const navigate = useNavigate()
 
   const { dispatch, user } = useContext(context)
 
   const handleLogout = () => {
-    dispatch({type: 'LOGOUT'})
+    dispatch({type: 'LOGOUT'}) && navigate('/login')
   }
 
 
   return (
     <div className='top'>
       <div className='topLeft'>
-        <Twitter  className='topIcon'/>
+        <span>TECH NAIJA</span>
+        {/* <Twitter  className='topIcon'/>
         <Facebook className='topIcon'/>
-        <Instagram  className='topIcon'/>
+        <Instagram  className='topIcon'/> */}
       </div>
       <div className='topCenter'>
         <ul className='topList'>

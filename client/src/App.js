@@ -12,9 +12,9 @@ function App() {
     <>
        <Topbar/>
        <Routes>
-          <Route exact path="/" element={!user ? <Login/> : <Home/>}/>
-          <Route exact path="/login" element={!user ? <Login/>: <Home/>}/>
-          <Route exact path="/register" element={!user ? <Register/> : <Home/>}/>
+          <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/login" element={user ? <Home/> :<Login/>}/>
+          <Route exact path="/register" element={user ? <Home/> : <Register/> }/>
           <Route exact path="/settings" element={!user ? <Login/> :<Settings/>}/>
           <Route exact path="/write" element={!user ? <Login/> : <Write/>}/>
           <Route exact path="/post/:postId" element={!user ? <Login/> :<Single/>}/>

@@ -8,7 +8,6 @@ const { json, urlencoded } = express
 const morgan = require('morgan')
 const cors = require('cors')
 const { log, error } = require('console')
-const multer = require('multer')
 const path = require('path')
 
 //import routes
@@ -17,17 +16,19 @@ const userRoute = require('./routes/userRoute')
 const postRoute = require('./routes/postRoute')
 const categoryRoute = require('./routes/categoryRoute')
 
-//bind with express server
+//bind with http server
 const app = express()
 
 //DB connection
 const connectDB = require('./config/db')
 
 //middlewares
-app.use('/images', express.static(path.join(__dirname, '/images')))
 app.use(morgan('common'))
-app.use(urlencoded({extended: false}))
 app.use(json())
+app.use(urlencoded({
+    extended: true, 
+    limit: '20mb'
+}))
 
 //cross-origin resource
 app.use(cors({
@@ -37,20 +38,6 @@ app.use(cors({
 }))
 
 //routes use
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, req.body.name)
-    },
-})
-
-const upload = multer({storage: storage})
-app.post('/blog/upload', upload.single('file'), (req, res) => {
-    res.status(200).json('File has been uploaded')
-})
-
 app.use('/blog', authRoute )
 app.use('/blog/user', userRoute )
 app.use('/blog/post', postRoute )

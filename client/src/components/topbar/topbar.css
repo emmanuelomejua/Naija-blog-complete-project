@@ -16,6 +16,13 @@
     justify-content: center;
 }
 
+.topLeft > span{
+    color: whitesmoke;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
 .topCenter{
     flex: 6;
 }
