@@ -1,9 +1,12 @@
 const bcrypt = require('bcrypt')
+
 const User = require('../models/User')
 
 // HASH PASSWORD
 const encryptPassword = (password) => {
+
     const hashedPassword =  bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+
     return hashedPassword ;
 };
 
@@ -12,12 +15,11 @@ const Register = async (req, res) => {
 
     const userExists = await User.findOne({email: req.body.email})
 
-    const {email, username, password} = req.body
-
     if(userExists){
         res.status(400).json('A user with this email already exists')
     } else {
         try {
+
             const newUser = new User({
                 ...req.body,
                 password: encryptPassword(password)

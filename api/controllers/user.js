@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const Post = require('../models/Post')
 
+const cloudinary = require('../middlewares/upload')
+
 //update
 const updateUser = async (req, res) => {
 
@@ -15,8 +17,17 @@ const updateUser = async (req, res) => {
                 req.body.password = await bcrypt.hash(req.body.password, salt)
             }
             try {
+                const profilePic = req.body.profilePic
+
+                const photoUrl = await cloudinary.uploader.upload(profilePic, {
+                    upload_preset: 'blog'
+                })
+
                 const updated = await User.findByIdAndUpdate(req.params.id, 
-                    {$set: req.body}, {new: true})
+                    {
+                       ...req.body,
+                       profilePic: photoUrl.url
+                    }, {new: true})
 
                 res.status(200).json(updated)
 
@@ -36,7 +47,6 @@ const deleteUser = async (req, res) => {
     if(req.body.userId === req.params.id){
         try {
             const user = await User.findById(req.params.id)
-            // const post = await Post.findOne(username)
 
             try {
                 await Post.deleteMany({username: user.username})
@@ -56,11 +66,15 @@ const deleteUser = async (req, res) => {
 
 //get user
 const getUser = async (req, res) => {
+
     try {
-        let user1 = await User.findById(req.params.id)
-        const { password, ...otherDetails } = user1._doc
+        let user = await User.findById(req.params.id)
+
+        const { password, ...otherDetails } = user._doc
+
         res.status(200).json(otherDetails)
     } catch (err) {
+
         res.status(500).json(err.message)
     }
 }
