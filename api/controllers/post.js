@@ -1,10 +1,22 @@
 const Post = require('../models/Post')
 const User = require('../models/User')
 
+const cloudinary = require('../middlewares/upload')
+
 //create post
 const createPost = async (req, res) => {
-    const newPost = await Post(req.body)
     try {
+        const photo = req.body.photo
+
+        const photoUrl = await cloudinary.uploader.upload(photo, {
+            upload_preset: 'blog'
+        })
+        
+        const newPost = await Post({
+            ...req.body,
+            photo: photoUrl.url
+        })
+
         const savedPost = await newPost.save()
         res.status(201).json(savedPost)
     } catch (err) {

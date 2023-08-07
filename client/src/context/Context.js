@@ -7,7 +7,7 @@ const INITIAL_STATE = {
     error: false,
 };
 
-console.log(JSON.parse(localStorage.getItem('user')))
+
 
 export const context = createContext(INITIAL_STATE)
 

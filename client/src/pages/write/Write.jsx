@@ -7,8 +7,7 @@ import axios from 'axios'
 
 const Write = () => {
 
-  const url1 = 'http://localhost:4003/blog/upload/'
-  // const url = 'http://localhost:4003/blog/post'
+  const url = 'http://localhost:4003/blog/post'
 
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
@@ -30,9 +29,9 @@ const Write = () => {
       newPost.photo = filename;
 
       try {
-        await axios.post(url1, data)
+        await axios.post(url, data)
       } catch (error) {
-        throw error
+        throw Error
       }
     }
       try {
@@ -40,7 +39,7 @@ const Write = () => {
         window.location.replace('/post/' + res.data._id)
 
       } catch (error) {
-        throw error
+        throw Error
       }
   }
 

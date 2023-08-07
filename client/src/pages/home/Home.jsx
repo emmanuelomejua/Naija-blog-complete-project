@@ -9,7 +9,7 @@ const Home = () => {
   const [posts, setPosts] = useState([])
   const {search} = useLocation()
 
-  console.log(search)
+
 
   useEffect(()=> {
     const fetchposts = async () => {

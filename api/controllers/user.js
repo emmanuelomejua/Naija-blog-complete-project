@@ -49,7 +49,7 @@ const deleteUser = async (req, res) => {
             const user = await User.findById(req.params.id)
 
             try {
-                await Post.deleteMany({username: user.username})
+                await Post.deleteMany({email: user.email})
                 await User.findByIdAndDelete(req.params.id)
 
                 res.status(200).send({msg: 'user has been deleted'})

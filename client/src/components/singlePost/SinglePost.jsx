@@ -25,7 +25,7 @@ const SinglePost = () => {
          const res = await axios.get(url)
          setPost(res.data)
       } catch (error) {
-        alert('An error occured')
+        throw Error
       }
      
     }
