@@ -1,7 +1,7 @@
 import './topbar.css'
 // import {Facebook, Instagram, Search, Twitter} from '@mui/icons-material';
 import { noprofile } from '../../contants/images';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { context } from '../../context/Context';
 
@@ -9,12 +9,12 @@ import { context } from '../../context/Context';
 
 const Topbar = () => {
 
-  const navigate = useNavigate()
+
 
   const { dispatch, user } = useContext(context)
 
   const handleLogout = () => {
-    dispatch({type: 'LOGOUT'}) && navigate('/login')
+    dispatch({type: 'LOGOUT'}) && window.location.replace('/login')
   }
 
 

@@ -10,7 +10,7 @@ const Login = () => {
   const url = 'http://localhost:4003/blog/login'
   const userRef = useRef()
   const passwordRef = useRef()
-  const { user, dispatch, loading, error } = useContext(context)
+  const { dispatch, loading, error } = useContext(context)
 
   const handleeSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ const Login = () => {
     }
   }
 
-  console.log(user)
+
   return (
     <main className='login'>
         <span className='loginTitle'>Login</span>
