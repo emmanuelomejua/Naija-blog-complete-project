@@ -9,7 +9,7 @@ const createPost = async (req, res) => {
         const photo = req.body.photo
 
         const photoUrl = await cloudinary.uploader.upload(photo, {
-            upload_preset: 'blog'
+            upload_preset: 'blogsite'
         })
         
         const newPost = await Post({

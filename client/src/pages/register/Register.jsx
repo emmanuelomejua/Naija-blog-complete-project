@@ -15,6 +15,7 @@ const Register = () => {
   
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setError(false)
   
     try {
       const {email, username, password} = values
@@ -33,7 +34,7 @@ const Register = () => {
   }
 
 
-  const { handleChange, handleBlur,   errors, touched, isSubmitting, values, handleSubmit } = useFormik({
+  const { handleChange, handleBlur,   errors, touched, values, handleSubmit } = useFormik({
     initialValues: {
         email: '',
         password: '',
@@ -104,7 +105,8 @@ const Register = () => {
         />
          {errors.confirmPassword && touched.confirmPassword && <span className='input-error'>{errors.confirmPassword}</span>}
 
-        <button type='submit' className='loginButton' disabled={isSubmitting}>Register</button>
+        <button type='submit' className='loginButton' disabled={loading}>Register</button>
+        {error && <span className='input-error'>User already exist, pls login</span>}
        
       </form>
 

@@ -18,6 +18,7 @@ const Home = () => {
     }
     fetchposts()
   }, [search])
+  
   return (
     <>
        <Header/>

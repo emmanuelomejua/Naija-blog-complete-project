@@ -2,10 +2,8 @@
     flex: 3;
     margin: 20px;
     padding-bottom: 30px;
-    /* background-color: #3de6e6e5; */
-    background-color: rgba(126, 209, 209, 0.271);
+    background-color: rgba(187, 236, 236, 0.212);
     height: max-content;
-    
     border-radius: 10px;
     display: flex;
     flex-direction: column;

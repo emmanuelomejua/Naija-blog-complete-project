@@ -20,7 +20,7 @@ const updateUser = async (req, res) => {
                 const profilePic = req.body.profilePic
 
                 const photoUrl = await cloudinary.uploader.upload(profilePic, {
-                    upload_preset: 'blog'
+                    upload_preset: 'blogsite'
                 })
 
                 const updated = await User.findByIdAndUpdate(req.params.id, 

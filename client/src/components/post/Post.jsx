@@ -17,6 +17,7 @@ const Post = ({post}) => {
             <div className='postCats'>
                 {post.categories?.map((c)=> (
                      <span className='postCat' key={c}>{c}</span>
+                    
                 ))}
             </div>
             <Link to={`/post/${post._id}`} className='link' element={<Single/>}>
