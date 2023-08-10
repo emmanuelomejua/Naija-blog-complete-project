@@ -1,7 +1,6 @@
 import { Add } from '@mui/icons-material'
 import './write.css'
-import { useState } from 'react'
-import { useContext } from 'react'
+import { useState, useContext } from 'react'
 import { context } from '../../context/Context'
 import axios from 'axios'
 
@@ -11,55 +10,90 @@ const Write = () => {
 
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
+
   const [file, setFile] = useState('')
+  const [previewSource, setPreviewSource] = useState('')
+
+
   const { user } = useContext(context)
+
+  const handleFileChange = (e) => {
+    setFile(e.target.file)
+    const file = e.target.files[0]
+    previewFile(file)
+  }
+
+  const previewFile = (file) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      setPreviewSource(reader.result)
+    }
+  }
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPost = {
-      username: user.username,
-      title,
-      desc,
-    }
-    if(file){
-      const data = new FormData()
-      const filename = Date.now() + file.name;
-      data.append('name', filename);
-      data.append('file', file);
-      newPost.photo = filename;
+    console.log('submit')
 
-      try {
-        await axios.post(url, data)
-      } catch (error) {
-        throw Error
-      }
-    }
-      try {
-        const res = await axios.post('/post', newPost)
-        window.location.replace('/post/' + res.data._id)
 
-      } catch (error) {
-        throw Error
-      }
+    if(previewSource){
+      uploadImage(previewSource)
+    }
+
+    try{
+      const res = await axios.post(url, {
+        username: user.username,
+        title,
+        desc,
+      })
+      console.log(res.data)
+    }catch (err){
+      console.log(err)
+    }
+
+  }
+
+  const uploadImage = async (base64EncodedImage) => {
+    try {
+      await axios.post(url,{
+        photo: file
+      })
+      console.log(base64EncodedImage)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 
   return (
-    <div className='write'>
+    <div className='write' onSubmit={handleSubmit}>
+
       {
-        file &&  <img src={URL.createObjectURL(file)} alt='' className='writeImg'/>
+        previewSource &&
+      <img src={previewSource} alt='' className='writeImg'/>
       }
+      
        
-      <form className='writeForm' onSubmit={handleSubmit}>
+      <form className='writeForm'>
 
         <div className='writeFormGroup'>
             <label htmlFor='fileInput'>
                 <Add className='writeIcon'/>
             </label>
-            <input type='file' name='fileInput' id='fileInput' onChange={(e) => setFile(e.target.files[0])} style={{display: 'none'}}/>
+            <input 
+            type='file' 
+            name='fileInput' 
+            id='fileInput'
+            value={file} 
+            onChange={handleFileChange} 
+            style={{display: 'none'}}
+            />
 
             <input 
               type='text' 
+
               placeholder='Title' 
               className='writeInput' 
               autoFocus={true}

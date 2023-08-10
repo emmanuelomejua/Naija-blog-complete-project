@@ -36,7 +36,7 @@ const Register = () => {
 
   const { handleChange, handleBlur,   errors, touched, values, handleSubmit } = useFormik({
     initialValues: {
-        email: '',
+        email: '', 
         password: '',
         username: '',
         confirmPassword: ''
