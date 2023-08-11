@@ -20,8 +20,11 @@ const Register = async (req, res) => {
     const userExists = await User.findOne({email: req.body.email})
 
     if(userExists){
+
         res.status(400).json('A user with this email already exists')
+
     } else {
+
         try {
 
             const newUser = new User({
@@ -41,6 +44,7 @@ const Register = async (req, res) => {
 
 //login
 const Login = async (req, res) => {
+
     try {
         const user = await User.findOne({email: req.body.email})
 
@@ -49,18 +53,19 @@ const Login = async (req, res) => {
         }
 
         const validate = await bcrypt.compare(req.body.password, user.password)
+
         if(!validate){
             return res.status(400).send({message: 'Incorrect username or password'})
         }
 
-        // const accessToken = jwt.sign({
-        //     id: user._id.toString(),
+        const accessToken = jwt.sign({
+            id: user._id,
         
-        // }, process.env.JWT_KEY, {expiresIn: '3h'})
+        }, process.env.JWT_KEY, {expiresIn: '1d'})
 
         const { password, ...others } = user._doc
 
-        res.status(200).json(others)
+        res.status(200).json({...others,  accessToken})
     } catch (err) {
         res.status(500).json(err.message)
     }
