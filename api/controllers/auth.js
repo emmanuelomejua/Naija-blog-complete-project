@@ -39,16 +39,24 @@ const Register = async (req, res) => {
 const Login = async (req, res) => {
     try {
         const user = await User.findOne({email: req.body.email})
+
         if(!user){
-            return res.status(400).send({message: 'User does not exist'})
+            return res.status(400).send({message: 'Incorrect username and password'})
         }
+
         const validate = await bcrypt.compare(req.body.password, user.password)
         if(!validate){
-            return res.status(400).send({message: 'Incorrect password'})
+            return res.status(400).send({message: 'Incorrect username or password'})
         }
+
+        const accessToken = jwt.sign({
+            id: user._id,
+            isAdmin: user.isAdmin
+        }, process.env.JWT, {expiresIn: '3h'})
+
         const { password, ...others } = user._doc
 
-        res.status(200).json({...others})
+        res.status(200).json(...others, accessToken)
     } catch (err) {
         res.status(500).json(err.message)
     }
