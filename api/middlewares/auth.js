@@ -7,13 +7,14 @@ const verifyUser = (req, res, next) => {
     if(authHeader){
         const token = authHeader.split('')[2]
 
-        jwt.verify(token, process.env.JWT_KEY, (err, payload) => {
+        jwt.verify(token, process.env.JWT_KEY, (err, user) => {
             if(!err){
-                return req.user = payload
+                return req.user = user.toString()
             } else {
                 return res.status(401).json('Token is not valid')
             }
         })
+        next()
     } else {
         return res.status(403).json('Requires authentication')
     }

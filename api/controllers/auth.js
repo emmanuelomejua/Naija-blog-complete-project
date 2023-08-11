@@ -1,6 +1,10 @@
+require('dotenv').config()
+
 const bcrypt = require('bcrypt')
 
 const User = require('../models/User')
+
+const jwt = require('jsonwebtoken')
 
 // HASH PASSWORD
 const encryptPassword = (password) => {
@@ -49,14 +53,14 @@ const Login = async (req, res) => {
             return res.status(400).send({message: 'Incorrect username or password'})
         }
 
-        const accessToken = jwt.sign({
-            id: user._id,
-            isAdmin: user.isAdmin
-        }, process.env.JWT, {expiresIn: '3h'})
+        // const accessToken = jwt.sign({
+        //     id: user._id.toString(),
+        
+        // }, process.env.JWT_KEY, {expiresIn: '3h'})
 
         const { password, ...others } = user._doc
 
-        res.status(200).json(...others, accessToken)
+        res.status(200).json(others)
     } catch (err) {
         res.status(500).json(err.message)
     }
